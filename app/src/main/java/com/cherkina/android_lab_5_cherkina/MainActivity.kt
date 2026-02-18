@@ -27,11 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.Group
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,25 +41,97 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 @Composable
-fun TitleBlock(){
+fun TitleBlock() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .background(color = Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row() {
+            Text(
+                text = "Пример Compose-приложения",
+                color = Color.Black,
+                fontSize = 20.sp
+            )
 
+        }
+        Row() {
+            Text(
+                text = "Row, Column, Size, ARGB",
+                color = Color.Black,
+                fontSize = 20.sp
+            )
+        }
+        Row(
+            modifier = Modifier
+                .padding(top = 100.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ColorBox(Color(0xFFFF0000))
+            Spacer(modifier = Modifier.width(16.dp))
+            ColorBox(Color(0xFF00FF00))
+            Spacer(modifier = Modifier.width(16.dp))
+            ColorBox(Color(0xFF0000FF))
+        }
+        Row(modifier = Modifier
+            .padding(top = 100.dp, start = 20.dp, end = 20.dp)
+            .background(Color.LightGray)
+            .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(top = 8.dp, bottom = 8.dp, start = 8.dp)
+            ) {
+                Text(text = "Левая колонка\nТекст 1")
+            }
+            Spacer(modifier = Modifier.width(120.dp))
+            Column(
+                modifier = Modifier
+                    .padding(top = 8.dp, bottom = 8.dp)
+            ) {
+                Text(text = "Правая колонка\nТекст 2",
+                    textAlign = TextAlign.End)
+            }
+        }
+    }
 }
 @Composable
-fun MainScreen(){
-
+fun MainScreen() {
+    TitleBlock()
 }
 @Composable
-fun ColorRow(){
+fun ColorRow() {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        ColorBox(Color(0xFFFF0000))
+        ColorBox(Color(0xFF00FF00))
 
+
+        ColorBox(Color(0xFF0000FF))
+    }
 }
 @Composable
-fun ColorBox(color: Color){
-
+fun ColorBox(color: Color) {
+    Box(
+        modifier = Modifier
+            .size(100.dp)
+            .background(color)
+    )
 }
 @Composable
-fun CombinedBlock(){
+fun CombinedBlock() {
 
 }
 
